@@ -1,3 +1,28 @@
+commit 8877e02116cb9f949dfc51e718c246f45e8fa9f4
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 15:47:39 2024 -0300
+
+    Redacción del Archivo README.md
+
+commit 4090d580cd67a62a265d2928a1486fcacbef2c00
+Merge: c32b473 9966629
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 15:38:07 2024 -0300
+
+    Resolución de conflictos en archivos
+
+commit c32b47395a9fa45fef89f41a62655766ac375f90
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 15:31:56 2024 -0300
+
+    Repositorio Clonado
+
+commit 9966629c2a996364d1eb9167378fd9c6ede8ca02
+Author: Alejandro Daniel Di Stefano <addistefano76@gmail.com>
+Date:   Tue Apr 2 15:26:12 2024 -0300
+
+    Initial commit
+
 commit 71f8b100812a8cfbb00d5b9df2d3999f8fbc026f
 Author: Alejandro Di Stefano <addistefano@live.com.ar>
 Date:   Tue Apr 2 15:18:49 2024 -0300
