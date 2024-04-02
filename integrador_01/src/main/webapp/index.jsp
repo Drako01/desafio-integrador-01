@@ -12,15 +12,14 @@
 
 </head>
 <body>
-	<header>
-		
-	</header>
+	<header> </header>
 	<main>
 		<h1>Bienvenidos</h1>
 	</main>
 	<footer class="footer center">
-		<p>Educación IT | &copy;</p>		
+		<p>Educación IT | &copy;</p>
+		<p id="hora"></p>
 	</footer>
-
+	<script type="text/javascript" src="static/js/reloj.js"></script>
 </body>
 </html>
