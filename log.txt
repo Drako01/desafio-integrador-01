@@ -1,3 +1,9 @@
+commit d14ec66ea5746f420ef56a71b0025dc72254d419
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 16:02:52 2024 -0300
+
+    Creacion e Implementacion de Staticos
+
 commit 12a743bef29720f54bcc9bb81520300fdf370583
 Author: Alejandro Di Stefano <addistefano@live.com.ar>
 Date:   Tue Apr 2 16:01:56 2024 -0300
