@@ -1,3 +1,9 @@
+commit b75bfad94be4e884daf4983785953c4309fcaec9
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 17:23:20 2024 -0300
+
+    Creacion e Implementacion de Clases e Interfaces iniciales + DaoManager y Excepciones
+
 commit d14ec66ea5746f420ef56a71b0025dc72254d419
 Author: Alejandro Di Stefano <addistefano@live.com.ar>
 Date:   Tue Apr 2 16:02:52 2024 -0300
