@@ -1,4 +1,4 @@
-## Proyecto Integrador Fase I
+# Proyecto Integrador Fase I
 
 
 <p align="center">
