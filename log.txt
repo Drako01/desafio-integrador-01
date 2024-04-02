@@ -1,3 +1,21 @@
+commit 929d88c6c8c6fe117fa54ce163e3dda791e38bf8
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 16:01:25 2024 -0300
+
+    Creacion e Implementacion de Staticos
+
+commit 696eda51194348f6f21718e712abefd31c9fcb7c
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 15:53:53 2024 -0300
+
+    Redacción del Archivo README.md
+
+commit e2e6e28f3f48c4298e7523bf6d0888cd84b9e8f4
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 15:51:59 2024 -0300
+
+    Redacción del Archivo README.md
+
 commit 8877e02116cb9f949dfc51e718c246f45e8fa9f4
 Author: Alejandro Di Stefano <addistefano@live.com.ar>
 Date:   Tue Apr 2 15:47:39 2024 -0300
