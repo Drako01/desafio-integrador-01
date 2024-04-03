@@ -12,9 +12,21 @@
 
 </head>
 <body>
-	<header> </header>
+	<header>
+		<nav class="navbar">
+			<ul class="d-flex row evenly">
+				<li><a href="index.jsp">Inicio</a></li>
+				<li><a href="ListarPeliculasServlet">Peliculas</a></li>
+			</ul>
+		</nav>
+	</header>
 	<main>
-		<h1>Bienvenidos</h1>
+		<section class="d-flex column center bienvenido">
+			<h1>Desafio Integrador | Educación IT</h1>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Blockbuster_logo.svg/1200px-Blockbuster_logo.svg.png"
+			 alt="BlockBuster" class="bienvenido">
+		</section>
+		<section class=" bienvenido"></section>
 	</main>
 	<footer class="footer center">
 		<p>Educación IT | &copy;</p>

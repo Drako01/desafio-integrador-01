@@ -20,6 +20,13 @@ public class DAOManager implements DAOInterface{
 	private static final String USER = "root";
 	private static final String PASSWORD = "";
 	
+	static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new ExceptionInInitializerError(e);
+        }
+    }
 
 	@Override
 	public void verificarYCrearTabla() throws DBManagerException{	
@@ -42,10 +49,7 @@ public class DAOManager implements DAOInterface{
 		}catch(SQLException e) {
 			throw new DBManagerException(DBConexionException.ERROR_3,
 					"Error al verificar y crear la tabla: " + e.getMessage(), e);
-		}finally {
-			System.out.println("Fin Bloque de Verificación de la Tabla " + table 
-					+ " en la base de datos");
-		}	
+		}
 		
 	}
 
@@ -71,7 +75,8 @@ public class DAOManager implements DAOInterface{
             }
 
         } catch (SQLException e) {
-            throw new DBManagerException(DBManagerException.ERROR_2, "Error al obtener las películas: " + e.getMessage(), e);
+            throw new DBManagerException(DBManagerException.ERROR_2, 
+            		"Error al obtener las películas: " + e.getMessage(), e);
         }
         return peliculas;
     }
@@ -91,7 +96,8 @@ public class DAOManager implements DAOInterface{
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new DBManagerException(DBManagerException.ERROR_6, "Error al insertar la película: " + e.getMessage(), e);
+            throw new DBManagerException(DBManagerException.ERROR_6, 
+            		"Error al insertar la película: " + e.getMessage(), e);
         }
     }
 
@@ -116,7 +122,8 @@ public class DAOManager implements DAOInterface{
 	            }
 	        }
 	    } catch (SQLException e) {
-	        throw new DBManagerException(DBManagerException.ERROR_4, "Error al obtener la película por su ID: " + e.getMessage(), e);
+	        throw new DBManagerException(DBManagerException.ERROR_4, 
+	        		"Error al obtener la película por su ID: " + e.getMessage(), e);
 	    }
 	    return pelicula;
 	}
@@ -137,12 +144,14 @@ public class DAOManager implements DAOInterface{
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected == 0) {
-                throw new DBManagerException(DBManagerException.ERROR_5, "No se encontró ninguna película con el código proporcionado.");
+                throw new DBManagerException(DBManagerException.ERROR_5, 
+                		"No se encontró ninguna película con el código proporcionado.");
             }
             System.out.println("Pelicula modificada correctamente.");
 
         } catch (SQLException e) {
-            throw new DBManagerException(DBManagerException.ERROR_7, "Error al modificar la película: " + e.getMessage(), e);
+            throw new DBManagerException(DBManagerException.ERROR_7, 
+            		"Error al modificar la película: " + e.getMessage(), e);
         }
     }
 
@@ -158,12 +167,14 @@ public class DAOManager implements DAOInterface{
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected == 0) {
-                throw new DBManagerException(DBManagerException.ERROR_8, "No se encontró ninguna película con el código proporcionado.");
+                throw new DBManagerException(DBManagerException.ERROR_8, 
+                		"No se encontró ninguna película con el código proporcionado.");
             }
             System.out.println("Pelicula eliminada correctamente.");
 
         } catch (SQLException e) {
-            throw new DBManagerException(DBManagerException.ERROR_8, "Error al eliminar la película: " + e.getMessage(), e);
+            throw new DBManagerException(DBManagerException.ERROR_8, 
+            		"Error al eliminar la película: " + e.getMessage(), e);
         }
     }
 

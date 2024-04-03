@@ -1,0 +1,6 @@
+com\educacionit\excepciones\DBConexionException.class
+com\educacionit\conexion\DAOManager.class
+com\educacionit\model\Pelicula.class
+com\educacionit\servlets\ListarPeliculasServlet.class
+com\educacionit\interfaces\DAOInterface.class
+com\educacionit\excepciones\DBManagerException.class
