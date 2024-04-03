@@ -1,3 +1,33 @@
+commit 363a2afecf81fdd83e790af7ae803d39caaac357
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Wed Apr 3 15:59:57 2024 -0300
+
+    Fianlizando configuracion y Package JAR
+
+commit 138be3a4a049f3f166afb63ee1406b7ccf142b3e
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Wed Apr 3 15:47:14 2024 -0300
+
+    Fianlizando configuracion y Package JAR
+
+commit 780e1572b4e4902dcefbb1edb868a76cf4d2b159
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Wed Apr 3 15:33:16 2024 -0300
+
+    Fianlizando configuracion y Package JAR
+
+commit dccf5605b43516806d180e7b814df6bcb4106d80
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Wed Apr 3 15:05:19 2024 -0300
+
+    Fianlizando configuracion y Package JAR
+
+commit 73d8823ed4dbce78901661891ad3b55c098f2570
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Wed Apr 3 13:52:37 2024 -0300
+
+    Configuracion de Servlets y JSP
+
 commit a9e16079f515eeee2f94604868b4e9cdb1d28495
 Author: Alejandro Di Stefano <addistefano@live.com.ar>
 Date:   Wed Apr 3 13:51:58 2024 -0300
