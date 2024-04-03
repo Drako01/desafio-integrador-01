@@ -46,12 +46,12 @@ public class BuscarPeliculasServlet extends HttpServlet {
 			}
 
 			// Redirigir la solicitud al archivo JSP correspondiente
-			response.sendError(HttpServletResponse.SC_OK);
+			
 			request.getRequestDispatcher("/buscarPeliculas.jsp").forward(request, response);
 
 		} catch (DBManagerException e) {
-			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			response.getWriter().println("Error al obtener las películas: " + e.getMessage());
 		}
 	}
@@ -79,22 +79,19 @@ public class BuscarPeliculasServlet extends HttpServlet {
 					session.setAttribute("peliculaSeleccionada", pelicula);
 					
 					// Redirigir a la página de detalles
-					response.setStatus(HttpServletResponse.SC_OK);
 					response.sendRedirect("paginaDetalles.jsp");
 					return; 
 				} catch (DBManagerException e) {
 					e.printStackTrace();
-					response.sendError(HttpServletResponse.SC_NOT_FOUND);
+					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 					response.getWriter().println("Error al obtener la película: " + e.getMessage());
 					return; 
 				}
 			} else {
-				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Credenciales incorrectas");
 				response.sendRedirect("errorClave.jsp");
 				return; 
 			}
 		} else {
-			response.sendError(HttpServletResponse.SC_FORBIDDEN, "Credenciales incorrectas");
 			response.sendRedirect("errorClave.jsp");
 			return; 
 		}
