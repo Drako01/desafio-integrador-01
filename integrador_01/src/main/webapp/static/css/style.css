@@ -182,9 +182,10 @@ form label {
 	margin-right: auto;
 	
 }
+
 .cabecera-tabla{
 	background-color: #40404050;
-	height: 2rem;
+	height: 3rem;
 }
 .cabecera-tabla th,
 .cuerpo-tabla td{
