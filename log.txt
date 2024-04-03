@@ -1,3 +1,15 @@
+commit 07d148211dbf0d01d99fad530db9b83530e26798
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Wed Apr 3 11:37:10 2024 -0300
+
+    Creacion de ListarPeliculasServlet
+
+commit 52a8c2a8b188e6061c6dcfdecadd603bd0da5f9c
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Tue Apr 2 17:24:07 2024 -0300
+
+    Creacion e Implementacion de Clases e Interfaces iniciales + DaoManager y Excepciones
+
 commit b75bfad94be4e884daf4983785953c4309fcaec9
 Author: Alejandro Di Stefano <addistefano@live.com.ar>
 Date:   Tue Apr 2 17:23:20 2024 -0300
