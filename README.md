@@ -52,7 +52,7 @@ Este proyecto se centra en el desarrollo de una aplicación en Java que permite 
 - MySQL
 
 ### Versión de Java Utilizada
-Java 1.8
+Java 11
 
 ### Autor del Proyecto
 Alejandro Daniel Di Stefano
