@@ -11,6 +11,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Buscar Películas | Educación IT</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
@@ -42,10 +43,10 @@
 			<h2>Resultados de la Búsqueda</h2>
 			<table>
 				<thead>
-					<tr>
+					<tr class="cabecera-tabla">
 						<th>Código</th>
 						<th>Título</th>
-						<th colspan="2">Acceder</th>
+						<th colspan="2">Acceder a Detalles</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -62,7 +63,7 @@
 								class="d-flex center">
 								<input type="hidden" name="codigoPelicula"
 									value="<%=pelicula.getCodigo()%>"> 
-									<input type="text"
+									<input type="password"
 									name="codigo_secreto" placeholder="Ingrese el código secreto">
 								<input type="submit" value="Detalles" class="sin-padding btn">
 							</form>
