@@ -1,3 +1,15 @@
+commit a9e16079f515eeee2f94604868b4e9cdb1d28495
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Wed Apr 3 13:51:58 2024 -0300
+
+    Configuracion de Servlets y JSP
+
+commit afd4ac4be9df32e2b189182abf4745c1ed62c754
+Author: Alejandro Di Stefano <addistefano@live.com.ar>
+Date:   Wed Apr 3 11:37:43 2024 -0300
+
+    Creacion de ListarPeliculasServlet
+
 commit 07d148211dbf0d01d99fad530db9b83530e26798
 Author: Alejandro Di Stefano <addistefano@live.com.ar>
 Date:   Wed Apr 3 11:37:10 2024 -0300
