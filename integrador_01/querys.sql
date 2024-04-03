@@ -26,3 +26,6 @@ VALUES ('Mad Max', 'https://www.youtube.com/watch?v=2OEGx_yIS6M', 'https://asset
 		('The Matrix', 'https://www.youtube.com/watch?v=m8e-FF8MsqU', 'https://static.wikia.nocookie.net/doblaje/images/7/7a/Matrix.jpg/revision/latest?cb=20210703005220&path-prefix=es', 'Acción, Ciencia ficción');
 
 SELECT * FROM peliculas;
+
+UPDATE peliculas SET imagen_promocional = 'https://www.tematika.com/media/catalog/Ilhsa/Imagenes/666871.jpg'
+WHERE codigo = 6;

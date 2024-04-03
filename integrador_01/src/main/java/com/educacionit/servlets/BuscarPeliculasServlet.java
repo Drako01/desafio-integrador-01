@@ -46,10 +46,11 @@ public class BuscarPeliculasServlet extends HttpServlet {
 			}
 
 			// Redirigir la solicitud al archivo JSP correspondiente
+			response.sendError(HttpServletResponse.SC_OK);
 			request.getRequestDispatcher("/buscarPeliculas.jsp").forward(request, response);
 
 		} catch (DBManagerException e) {
-			// Manejar la excepción adecuadamente (redirigir a una página de error, etc.)
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			e.printStackTrace();
 			response.getWriter().println("Error al obtener las películas: " + e.getMessage());
 		}
@@ -76,22 +77,26 @@ public class BuscarPeliculasServlet extends HttpServlet {
 					// Guardar la película en el alcance de sesión para usarla en la página de
 					// detalles
 					session.setAttribute("peliculaSeleccionada", pelicula);
+					
 					// Redirigir a la página de detalles
+					response.setStatus(HttpServletResponse.SC_OK);
 					response.sendRedirect("paginaDetalles.jsp");
-					return; // Importante: Terminar la ejecución del método después de redirigir
+					return; 
 				} catch (DBManagerException e) {
 					e.printStackTrace();
+					response.sendError(HttpServletResponse.SC_NOT_FOUND);
 					response.getWriter().println("Error al obtener la película: " + e.getMessage());
-					return; // Importante: Terminar la ejecución del método después de mostrar el mensaje de
-							// error
+					return; 
 				}
 			} else {
+				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Credenciales incorrectas");
 				response.sendRedirect("errorClave.jsp");
-				return; // Importante: Terminar la ejecución del método después de redirigir
+				return; 
 			}
 		} else {
+			response.sendError(HttpServletResponse.SC_FORBIDDEN, "Credenciales incorrectas");
 			response.sendRedirect("errorClave.jsp");
-			return; // Importante: Terminar la ejecución del método después de redirigir
+			return; 
 		}
 	}
 
