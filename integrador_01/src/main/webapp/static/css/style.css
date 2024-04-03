@@ -40,7 +40,10 @@ a {
 	align-items: center;
 	justify-content: center;
 }
-
+.sin-padding{
+	margin-top: 0 !important;
+	min-width: 10rem !important;
+}
 .footer {
 	padding: 2rem;
 	display: flex;
@@ -189,4 +192,15 @@ form label {
 }
 .cuerpo-tabla td img{
 	width: 80px;
+}
+.input-form{
+	align-items: flex-end;
+	gap: 1rem;
+	justify-content: center;
+}
+.input-form .btn{
+	width: 6rem;
+}
+.detalles-pelicula img {
+	width: 18rem;
 }

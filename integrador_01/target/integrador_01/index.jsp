@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,17 +9,30 @@
 <meta http-equiv="Pragma" content="no-cache">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bienvenidos | EducaciÛn IT</title>
+<title>Bienvenidos | Educaci√≥n IT</title>
 <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
 </head>
 <body>
-	<header> </header>
+	<header>
+		<nav class="navbar">
+			<ul class="d-flex row evenly">
+				<li><a href="index.jsp">Inicio</a></li>
+				<li><a href="BuscarPeliculasServlet">Buscar</a></li>
+				<li><a href="ListarPeliculasServlet">Peliculas</a></li>
+			</ul>
+		</nav>
+	</header>
 	<main>
-		<h1>Bienvenidos</h1>
+		<section class="d-flex column center bienvenido">
+			<h1>Desafio Integrador | Educaci√≥n IT</h1>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Blockbuster_logo.svg/1200px-Blockbuster_logo.svg.png"
+			 alt="BlockBuster" class="bienvenido">
+		</section>
+		<section class=" bienvenido"></section>
 	</main>
 	<footer class="footer center">
-		<p>EducaciÛn IT | &copy;</p>
+		<p>Educaci√≥n IT | &copy;</p>
 		<p id="hora"></p>
 	</footer>
 	<script type="text/javascript" src="static/js/reloj.js"></script>

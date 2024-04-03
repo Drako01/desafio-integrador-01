@@ -128,6 +128,62 @@ public class DAOManager implements DAOInterface{
 	    return pelicula;
 	}
 
+	@Override
+	public List<Pelicula> buscarPeliculasPorGenero(String genero) throws DBManagerException {
+	    List<Pelicula> peliculas = new ArrayList<>();
+	    String query = "SELECT * FROM peliculas WHERE generos LIKE ?";
+	    try (
+	        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+	        PreparedStatement statement = conn.prepareStatement(query)
+	    ) {
+	        statement.setString(1, "%" + genero + "%");
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            while (resultSet.next()) {
+	                int codigo = resultSet.getInt("codigo");
+	                String titulo = resultSet.getString("titulo");
+	                String url = resultSet.getString("url");
+	                String imagenPromocional = resultSet.getString("imagen_promocional");
+	                String generos = resultSet.getString("generos");
+
+	                Pelicula pelicula = new Pelicula(codigo, titulo, url, imagenPromocional, generos);
+	                peliculas.add(pelicula);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        throw new DBManagerException(DBManagerException.ERROR_2, 
+	            "Error al obtener las películas por género: " + e.getMessage(), e);
+	    }
+	    return peliculas;
+	}
+
+	@Override
+	public List<Pelicula> buscarPeliculasPorTitulo(String titulo) throws DBManagerException {
+	    List<Pelicula> peliculas = new ArrayList<>();
+	    String query = "SELECT * FROM peliculas WHERE titulo LIKE ?";
+	    try (
+	        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+	        PreparedStatement statement = conn.prepareStatement(query)
+	    ) {
+	        statement.setString(1, "%" + titulo + "%");
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            while (resultSet.next()) {
+	                int codigo = resultSet.getInt("codigo");
+	                String tituloPelicula = resultSet.getString("titulo");
+	                String url = resultSet.getString("url");
+	                String imagenPromocional = resultSet.getString("imagen_promocional");
+	                String generos = resultSet.getString("generos");
+
+	                Pelicula pelicula = new Pelicula(codigo, tituloPelicula, url, imagenPromocional, generos);
+	                peliculas.add(pelicula);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        throw new DBManagerException(DBManagerException.ERROR_2, 
+	            "Error al obtener las películas por título: " + e.getMessage(), e);
+	    }
+	    return peliculas;
+	}
+
   
     @Override
     public void modificarPelicula(Pelicula pelicula) throws DBManagerException {

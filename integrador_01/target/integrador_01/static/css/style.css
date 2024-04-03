@@ -150,7 +150,9 @@ a {
 form label {
 	padding: .5rem 0;
 }
-
+.bienvenido img {
+	width: calc(50vw - 4vw);
+}
 .bienvenido button, .bienvenido input, form button, form input {
 	height: 2rem;
 	width: calc(80% - 8rem);
@@ -172,4 +174,19 @@ form label {
 .ajax-box {
 	margin-bottom: 10rem;
 }
-
+.cuerpo-tabla td{
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+.cabecera-tabla{
+	background-color: #40404050;
+	height: 2rem;
+}
+.cabecera-tabla th,
+.cuerpo-tabla td{
+	padding: 0 1rem;
+}
+.cuerpo-tabla td img{
+	width: 80px;
+}

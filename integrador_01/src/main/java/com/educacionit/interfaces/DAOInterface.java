@@ -15,6 +15,10 @@ public interface DAOInterface {
 
 	public Pelicula obtenerPeliculaPorID(Integer codigo)throws DBManagerException;
 
+	public List<Pelicula> buscarPeliculasPorGenero(String genero) throws DBManagerException;
+	
+	public List<Pelicula> buscarPeliculasPorTitulo(String titulo) throws DBManagerException;
+	
 	public void modificarPelicula(Pelicula pelicula)throws DBManagerException;
 
 	public void eliminarPelicula(Integer codigo)throws DBManagerException;
