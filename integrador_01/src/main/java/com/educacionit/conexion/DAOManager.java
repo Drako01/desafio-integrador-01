@@ -1,7 +1,6 @@
 package com.educacionit.conexion;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,14 +10,16 @@ import java.util.List;
 
 import com.educacionit.excepciones.DBConexionException;
 import com.educacionit.excepciones.DBManagerException;
+import com.educacionit.interfaces.ConectionInterface;
 import com.educacionit.interfaces.DAOInterface;
 import com.educacionit.model.Pelicula;
 
-public class DAOManager implements DAOInterface{
+public class DAOManager implements DAOInterface, ConectionInterface{	
 	
-	private static final String URL = "jdbc:mysql://localhost:3306/peliculas_db";
-	private static final String USER = "root";
-	private static final String PASSWORD = "";
+	@Override
+    public Connection getConnection() {
+        return ConectionInterface.super.getConnection(); 
+    }
 	
 	static {
         try {
@@ -27,12 +28,13 @@ public class DAOManager implements DAOInterface{
             throw new ExceptionInInitializerError(e);
         }
     }
-
+	
+	
 	@Override
 	public void verificarYCrearTabla() throws DBManagerException{	
 		String table = "peliculas";
 		try(
-				Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+				Connection conn = getConnection(); 
 				Statement statement = conn.createStatement();
 			){
 			
@@ -58,7 +60,7 @@ public class DAOManager implements DAOInterface{
         List<Pelicula> peliculas = new ArrayList<>();
         String query = "SELECT * FROM peliculas";
         try (
-        		Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        		Connection conn = getConnection(); 
         		Statement statement = conn.createStatement();
         		ResultSet resultSet = statement.executeQuery(query)
         	) {
@@ -86,7 +88,7 @@ public class DAOManager implements DAOInterface{
         String query = "INSERT INTO peliculas (titulo, url, imagen_promocional, generos) "
                             + "VALUES (?, ?, ?, ?)";
         try (
-            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        	Connection conn = getConnection(); 
             PreparedStatement statement = conn.prepareStatement(query)
         ) {
             statement.setString(1, pelicula.getTitulo());
@@ -106,7 +108,7 @@ public class DAOManager implements DAOInterface{
 	    Pelicula pelicula = null;
 	    String query = "SELECT * FROM peliculas WHERE codigo = ?";
 	    try (
-	        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+	    	Connection conn = getConnection(); 
 	        PreparedStatement statement = conn.prepareStatement(query)
 	    ) {
 	        statement.setInt(1, codigo);
@@ -133,8 +135,8 @@ public class DAOManager implements DAOInterface{
 	    List<Pelicula> peliculas = new ArrayList<>();
 	    String query = "SELECT * FROM peliculas WHERE generos LIKE ?";
 	    try (
-	        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-	        PreparedStatement statement = conn.prepareStatement(query)
+	    		Connection conn = getConnection(); 
+	    		PreparedStatement statement = conn.prepareStatement(query)
 	    ) {
 	        statement.setString(1, "%" + genero + "%");
 	        try (ResultSet resultSet = statement.executeQuery()) {
@@ -161,7 +163,7 @@ public class DAOManager implements DAOInterface{
 	    List<Pelicula> peliculas = new ArrayList<>();
 	    String query = "SELECT * FROM peliculas WHERE titulo LIKE ?";
 	    try (
-	        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+	    	Connection conn = getConnection(); 
 	        PreparedStatement statement = conn.prepareStatement(query)
 	    ) {
 	        statement.setString(1, "%" + titulo + "%");
@@ -189,7 +191,7 @@ public class DAOManager implements DAOInterface{
     public void modificarPelicula(Pelicula pelicula) throws DBManagerException {
         String query = "UPDATE peliculas SET titulo = ?, url = ?, imagen_promocional = ?, generos = ? WHERE codigo = ?";
         try (
-            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        	Connection conn = getConnection(); 
             PreparedStatement statement = conn.prepareStatement(query)
         ) {
             statement.setString(1, pelicula.getTitulo());
@@ -216,7 +218,7 @@ public class DAOManager implements DAOInterface{
     public void eliminarPelicula(Integer codigo) throws DBManagerException {
         String query = "DELETE FROM peliculas WHERE codigo = ?";
         try (
-            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        	Connection conn = getConnection(); 
             PreparedStatement statement = conn.prepareStatement(query)
         ) {
             statement.setInt(1, codigo);
