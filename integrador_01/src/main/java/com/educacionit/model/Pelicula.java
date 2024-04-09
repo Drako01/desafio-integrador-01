@@ -1,90 +1,87 @@
 package com.educacionit.model;
 
 import java.util.Objects;
+import java.util.List;
 
 public class Pelicula {
+    private Integer codigo;
+    private String titulo;
+    private String url;
+    private String imagenPromocional;
+    private List<Genero> generos;
 
-	private Integer codigo;
-	private String titulo;
-	private String url;
-	private String imagen_promocional;
-	private String generos;
+    public Pelicula() {
+    }
 
-	public Pelicula() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public Pelicula(Integer codigo, String titulo, String url, String imagenPromocional, List<Genero> generos) {
+        this.codigo = codigo;
+        this.titulo = titulo;
+        this.url = url;
+        this.imagenPromocional = imagenPromocional;
+        this.generos = generos;
+    }
 
-	public Pelicula(Integer codigo, String titulo, String url, String imagen_promocional, String generos) {
-		super();
-		this.codigo = codigo;
-		this.titulo = titulo;
-		this.url = url;
-		this.imagen_promocional = imagen_promocional;
-		this.generos = generos;
-	}
+    public Integer getCodigo() {
+        return codigo;
+    }
 
-	public Integer getCodigo() {
-		return codigo;
-	}
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
 
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
-	}
+    public String getTitulo() {
+        return titulo;
+    }
 
-	public String getTitulo() {
-		return titulo;
-	}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getImagenPromocional() {
+        return imagenPromocional;
+    }
 
-	public String getImagen_promocional() {
-		return imagen_promocional;
-	}
+    public void setImagenPromocional(String imagenPromocional) {
+        this.imagenPromocional = imagenPromocional;
+    }
 
-	public void setImagen_promocional(String imagen_promocional) {
-		this.imagen_promocional = imagen_promocional;
-	}
+    public List<Genero> getGeneros() {
+        return generos;
+    }
 
-	public String getGeneros() {
-		return generos;
-	}
+    public void setGeneros(List<Genero> generos) {
+        this.generos = generos;
+    }
 
-	public void setGeneros(String generos) {
-		this.generos = generos;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pelicula pelicula = (Pelicula) o;
+        return Objects.equals(codigo, pelicula.codigo);
+    }
 
-	@Override
-	public String toString() {
-		return "Pelicula [codigo=" + codigo + ", titulo=" + titulo + ", url=" + url + ", imagen_promocional="
-				+ imagen_promocional + ", generos=" + generos + "]";
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo);
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(codigo);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pelicula other = (Pelicula) obj;
-		return Objects.equals(codigo, other.codigo);
-	}
-
+    @Override
+    public String toString() {
+        return "Pelicula{" +
+                "codigo=" + codigo +
+                ", titulo='" + titulo + '\'' +
+                ", url='" + url + '\'' +
+                ", imagenPromocional='" + imagenPromocional + '\'' +
+                ", generos=" + generos +
+                '}';
+    }
 }

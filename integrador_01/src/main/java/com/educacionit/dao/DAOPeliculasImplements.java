@@ -1,4 +1,4 @@
-package com.educacionit.conexion;
+package com.educacionit.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.educacionit.excepciones.DBConexionException;
 import com.educacionit.excepciones.DBManagerException;
 import com.educacionit.interfaces.ConectionInterface;
-import com.educacionit.interfaces.DAOInterface;
+import com.educacionit.interfaces.DAOPeliculasInterface;
+import com.educacionit.model.Genero;
 import com.educacionit.model.Pelicula;
 
-public class DAOManager implements DAOInterface, ConectionInterface{	
+public class DAOPeliculasImplements implements DAOPeliculasInterface, ConectionInterface {	
 	
 	@Override
     public Connection getConnection() {
@@ -28,32 +28,6 @@ public class DAOManager implements DAOInterface, ConectionInterface{
             throw new ExceptionInInitializerError(e);
         }
     }
-	
-	
-	@Override
-	public void verificarYCrearTabla() throws DBManagerException{	
-		String table = "peliculas";
-		try(
-				Connection conn = getConnection(); 
-				Statement statement = conn.createStatement();
-			){
-			
-			String query = "CREATE TABLE IF NOT EXISTS " + table + " (" 
-					+ "codigo INT AUTO_INCREMENT PRIMARY KEY,"
-					+ "titulo VARCHAR(100) NOT NULL," 
-					+ "url VARCHAR(255)," 
-					+ "imagen_promocional VARCHAR(255),"
-					+ "generos VARCHAR(255)"
-					+ ")";
-			
-			statement.executeUpdate(query);			
-			
-		}catch(SQLException e) {
-			throw new DBManagerException(DBConexionException.ERROR_3,
-					"Error al verificar y crear la tabla: " + e.getMessage(), e);
-		}
-		
-	}
 
 	@Override
 	public List<Pelicula> mostrarLasPeliculas() throws DBManagerException {
@@ -70,7 +44,9 @@ public class DAOManager implements DAOInterface, ConectionInterface{
                 String titulo = resultSet.getString("titulo");
                 String url = resultSet.getString("url");
                 String imagenPromocional = resultSet.getString("imagen_promocional");
-                String generos = resultSet.getString("generos");
+                
+                // Obtengo los géneros asociados a la película
+                List<Genero> generos = obtenerGenerosDePelicula(conn, codigo);
 
                 Pelicula pelicula = new Pelicula(codigo, titulo, url, imagenPromocional, generos);
                 peliculas.add(pelicula);
@@ -85,18 +61,28 @@ public class DAOManager implements DAOInterface, ConectionInterface{
 
 	@Override
 	public void insertarPelicula(Pelicula pelicula) throws DBManagerException {
-        String query = "INSERT INTO peliculas (titulo, url, imagen_promocional, generos) "
-                            + "VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO peliculas (titulo, url, imagen_promocional) "
+                            + "VALUES (?, ?, ?)";
         try (
         	Connection conn = getConnection(); 
-            PreparedStatement statement = conn.prepareStatement(query)
+            PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)
         ) {
             statement.setString(1, pelicula.getTitulo());
             statement.setString(2, pelicula.getUrl());
-            statement.setString(3, pelicula.getImagen_promocional());
-            statement.setString(4, pelicula.getGeneros());
+            statement.setString(3, pelicula.getImagenPromocional());
 
             statement.executeUpdate();
+            
+            // Obtengo el código de la película insertada
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int codigo = generatedKeys.getInt(1);
+                pelicula.setCodigo(codigo);
+            }
+            
+            // Inserto los géneros asociados a la película
+            insertarGenerosDePelicula(conn, pelicula);
+
         } catch (SQLException e) {
             throw new DBManagerException(DBManagerException.ERROR_6, 
             		"Error al insertar la película: " + e.getMessage(), e);
@@ -114,13 +100,14 @@ public class DAOManager implements DAOInterface, ConectionInterface{
 	        statement.setInt(1, codigo);
 	        try (ResultSet resultSet = statement.executeQuery()) {
 	            if (resultSet.next()) {
-	                int codigoPelicula = resultSet.getInt("codigo");
 	                String titulo = resultSet.getString("titulo");
 	                String url = resultSet.getString("url");
 	                String imagenPromocional = resultSet.getString("imagen_promocional");
-	                String generos = resultSet.getString("generos");
+	                
+	                // Obtengo los géneros asociados a la película
+	                List<Genero> generos = obtenerGenerosDePelicula(conn, codigo);
 
-	                pelicula = new Pelicula(codigoPelicula, titulo, url, imagenPromocional, generos);
+	                pelicula = new Pelicula(codigo, titulo, url, imagenPromocional, generos);
 	            }
 	        }
 	    } catch (SQLException e) {
@@ -133,7 +120,8 @@ public class DAOManager implements DAOInterface, ConectionInterface{
 	@Override
 	public List<Pelicula> buscarPeliculasPorGenero(String genero) throws DBManagerException {
 	    List<Pelicula> peliculas = new ArrayList<>();
-	    String query = "SELECT * FROM peliculas WHERE generos LIKE ?";
+	    String query = "SELECT p.* FROM peliculas p INNER JOIN pelicula_genero pg ON p.codigo = pg.id_pelicula"
+	    				+ " INNER JOIN generos g ON pg.id_genero = g.id WHERE g.nombre LIKE ?";
 	    try (
 	    		Connection conn = getConnection(); 
 	    		PreparedStatement statement = conn.prepareStatement(query)
@@ -145,7 +133,9 @@ public class DAOManager implements DAOInterface, ConectionInterface{
 	                String titulo = resultSet.getString("titulo");
 	                String url = resultSet.getString("url");
 	                String imagenPromocional = resultSet.getString("imagen_promocional");
-	                String generos = resultSet.getString("generos");
+	                
+	                // Obtengo los géneros asociados a la película
+	                List<Genero> generos = obtenerGenerosDePelicula(conn, codigo);
 
 	                Pelicula pelicula = new Pelicula(codigo, titulo, url, imagenPromocional, generos);
 	                peliculas.add(pelicula);
@@ -173,7 +163,9 @@ public class DAOManager implements DAOInterface, ConectionInterface{
 	                String tituloPelicula = resultSet.getString("titulo");
 	                String url = resultSet.getString("url");
 	                String imagenPromocional = resultSet.getString("imagen_promocional");
-	                String generos = resultSet.getString("generos");
+	                
+	                // Obtengo los géneros asociados a la película
+	                List<Genero> generos = obtenerGenerosDePelicula(conn, codigo);
 
 	                Pelicula pelicula = new Pelicula(codigo, tituloPelicula, url, imagenPromocional, generos);
 	                peliculas.add(pelicula);
@@ -185,20 +177,18 @@ public class DAOManager implements DAOInterface, ConectionInterface{
 	    }
 	    return peliculas;
 	}
-
   
     @Override
     public void modificarPelicula(Pelicula pelicula) throws DBManagerException {
-        String query = "UPDATE peliculas SET titulo = ?, url = ?, imagen_promocional = ?, generos = ? WHERE codigo = ?";
+        String query = "UPDATE peliculas SET titulo = ?, url = ?, imagen_promocional = ? WHERE codigo = ?";
         try (
         	Connection conn = getConnection(); 
             PreparedStatement statement = conn.prepareStatement(query)
         ) {
             statement.setString(1, pelicula.getTitulo());
             statement.setString(2, pelicula.getUrl());
-            statement.setString(3, pelicula.getImagen_promocional());
-            statement.setString(4, pelicula.getGeneros());
-            statement.setInt(5, pelicula.getCodigo());
+            statement.setString(3, pelicula.getImagenPromocional());
+            statement.setInt(4, pelicula.getCodigo());
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected == 0) {
@@ -206,6 +196,9 @@ public class DAOManager implements DAOInterface, ConectionInterface{
                 		"No se encontró ninguna película con el código proporcionado.");
             }
             System.out.println("Pelicula modificada correctamente.");
+
+            // Actualizo los géneros asociados a la película
+            actualizarGenerosDePelicula(conn, pelicula);
 
         } catch (SQLException e) {
             throw new DBManagerException(DBManagerException.ERROR_7, 
@@ -236,5 +229,44 @@ public class DAOManager implements DAOInterface, ConectionInterface{
         }
     }
 
+    // Método auxiliar para insertar los géneros asociados a una película
+    private void insertarGenerosDePelicula(Connection conn, Pelicula pelicula) throws SQLException {
+        String query = "INSERT INTO pelicula_genero (id_pelicula, id_genero) VALUES (?, ?)";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            for (Genero genero : pelicula.getGeneros()) {
+                statement.setInt(1, pelicula.getCodigo());
+                statement.setInt(2, genero.getId());
+                statement.addBatch();
+            }
+            statement.executeBatch();
+        }
+    }
 
+    // Método auxiliar para obtener los géneros asociados a una película
+    private List<Genero> obtenerGenerosDePelicula(Connection conn, Integer codigoPelicula) throws SQLException {
+        List<Genero> generos = new ArrayList<>();
+        String query = "SELECT g.* FROM generos g INNER JOIN pelicula_genero pg ON g.id = pg.id_genero WHERE pg.id_pelicula = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, codigoPelicula);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String nombre = resultSet.getString("nombre");
+                    Genero genero = new Genero(id, nombre);
+                    generos.add(genero);
+                }
+            }
+        }
+        return generos;
+    }
+
+    // Método auxiliar para actualizar los géneros asociados a una película
+    private void actualizarGenerosDePelicula(Connection conn, Pelicula pelicula) throws SQLException {
+        String deleteQuery = "DELETE FROM pelicula_genero WHERE id_pelicula = ?";
+        try (PreparedStatement deleteStatement = conn.prepareStatement(deleteQuery)) {
+            deleteStatement.setInt(1, pelicula.getCodigo());
+            deleteStatement.executeUpdate();
+        }
+        insertarGenerosDePelicula(conn, pelicula);
+    }
 }

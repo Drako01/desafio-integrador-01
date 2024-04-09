@@ -5,10 +5,8 @@ import java.util.List;
 import com.educacionit.excepciones.DBManagerException;
 import com.educacionit.model.Pelicula;
 
-public interface DAOInterface {
+public interface DAOPeliculasInterface {
 	
-	public void verificarYCrearTabla() throws DBManagerException;
-
 	public  List<Pelicula> mostrarLasPeliculas()throws DBManagerException;
 
 	public void insertarPelicula(Pelicula pelicula)throws DBManagerException;
