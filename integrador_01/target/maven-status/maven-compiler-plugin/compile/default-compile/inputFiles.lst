@@ -1,7 +1,11 @@
-E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\interfaces\DAOInterface.java
+E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\model\Genero.java
 E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\servlets\BuscarPeliculasServlet.java
 E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\excepciones\DBManagerException.java
-E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\conexion\DAOManager.java
 E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\excepciones\DBConexionException.java
 E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\interfaces\ConectionInterface.java
+E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\model\PeliculaGenero.java
+E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\dao\DAOGenerosImplements.java
+E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\interfaces\DAOGenerosInterface.java
+E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\dao\DAOPeliculasImplements.java
 E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\model\Pelicula.java
+E:\desafio_integrador\integrador_01\src\main\java\com\educacionit\interfaces\DAOPeliculasInterface.java

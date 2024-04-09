@@ -17,12 +17,45 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>AgregarPeliculaServlet</servlet-name>
+		<servlet-class>com.educacionit.servlets.AgregarPeliculaServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AgregarPeliculaServlet</servlet-name>
+		<url-pattern>/AgregarPeliculaServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>PeliculasManagerServlet</servlet-name>
+		<servlet-class>com.educacionit.servlets.PeliculasManagerServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PeliculasManagerServlet</servlet-name>
+		<url-pattern>/PeliculasManagerServlet</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
 		<servlet-name>BuscarPeliculasServlet</servlet-name>
 		<servlet-class>com.educacionit.servlets.BuscarPeliculasServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BuscarPeliculasServlet</servlet-name>
 		<url-pattern>/BuscarPeliculasServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>EliminarPeliculaServlet</servlet-name>
+		<servlet-class>com.educacionit.servlets.EliminarPeliculaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EliminarPeliculaServlet</servlet-name>
+		<url-pattern>/EliminarPeliculaServlet</url-pattern>
 	</servlet-mapping>
 
 </web-app>

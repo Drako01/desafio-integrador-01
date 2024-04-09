@@ -20,7 +20,7 @@
 		<nav class="navbar">
 			<ul class="d-flex row evenly">
 				<li><a href="index.jsp">Inicio</a></li>
-				<li><a href="BuscarPeliculasServlet">Buscar Pelicula</a></li>
+				<li><a href="BuscarPeliculasServlet">Buscar Pelicula</a></li>				
 			</ul>
 		</nav>
 	</header>

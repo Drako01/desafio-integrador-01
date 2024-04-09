@@ -1,7 +1,11 @@
 com\educacionit\excepciones\DBConexionException.class
-com\educacionit\conexion\DAOManager.class
-com\educacionit\interfaces\DAOInterface.class
+com\educacionit\model\PeliculaGenero.class
+com\educacionit\interfaces\DAOPeliculasInterface.class
+com\educacionit\dao\DAOGenerosImplements.class
+com\educacionit\interfaces\DAOGenerosInterface.class
+com\educacionit\dao\DAOPeliculasImplements.class
 com\educacionit\model\Pelicula.class
 com\educacionit\interfaces\ConectionInterface.class
+com\educacionit\model\Genero.class
 com\educacionit\excepciones\DBManagerException.class
 com\educacionit\servlets\BuscarPeliculasServlet.class

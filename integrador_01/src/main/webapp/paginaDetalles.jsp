@@ -21,6 +21,7 @@
 			<ul class="d-flex row evenly">
 				<li><a href="index.jsp">Inicio</a></li>
 				<li><a href="BuscarPeliculasServlet">Volver al Buscador</a></li>
+				<li><a href="PeliculasManagerServlet">Listar Todas</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -47,7 +48,6 @@
 					for (int i = 0; i < generos.size(); i++) {
 						Genero genero = generos.get(i);
 						out.print(genero.getNombre());
-						// Si no es el último género, agregar una coma y un espacio
 						if (i < generos.size() - 1) {
 					out.print(", ");
 						}

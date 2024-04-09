@@ -195,8 +195,7 @@ public class DAOPeliculasImplements implements DAOPeliculasInterface, ConectionI
                 throw new DBManagerException(DBManagerException.ERROR_5, 
                 		"No se encontró ninguna película con el código proporcionado.");
             }
-            System.out.println("Pelicula modificada correctamente.");
-
+            
             // Actualizo los géneros asociados a la película
             actualizarGenerosDePelicula(conn, pelicula);
 
@@ -209,25 +208,36 @@ public class DAOPeliculasImplements implements DAOPeliculasInterface, ConectionI
 
     @Override
     public void eliminarPelicula(Integer codigo) throws DBManagerException {
-        String query = "DELETE FROM peliculas WHERE codigo = ?";
         try (
-        	Connection conn = getConnection(); 
-            PreparedStatement statement = conn.prepareStatement(query)
-        ) {
-            statement.setInt(1, codigo);
+        		Connection conn = getConnection()) 
+        {
+            // Elimino primero los registros asociados en la tabla pelicula_genero
+            eliminarGenerosDePelicula(conn, codigo);
 
-            int rowsAffected = statement.executeUpdate();
-            if (rowsAffected == 0) {
-                throw new DBManagerException(DBManagerException.ERROR_8, 
-                		"No se encontró ninguna película con el código proporcionado.");
+            // Luego elimina la película
+            String query = "DELETE FROM peliculas WHERE codigo = ?";
+            try (PreparedStatement statement = conn.prepareStatement(query)) {
+                statement.setInt(1, codigo);
+                int rowsAffected = statement.executeUpdate();
+                if (rowsAffected == 0) {
+                    throw new DBManagerException(DBManagerException.ERROR_8, "No se encontró ninguna película con el código proporcionado.");
+                }
+               
             }
-            System.out.println("Pelicula eliminada correctamente.");
-
         } catch (SQLException e) {
-            throw new DBManagerException(DBManagerException.ERROR_8, 
-            		"Error al eliminar la película: " + e.getMessage(), e);
+            throw new DBManagerException(DBManagerException.ERROR_8, "Error al eliminar la película: " + e.getMessage(), e);
         }
     }
+
+    // Método auxiliar para eliminar los registros asociados en la tabla pelicula_genero
+    private void eliminarGenerosDePelicula(Connection conn, Integer codigoPelicula) throws SQLException {
+        String deleteQuery = "DELETE FROM pelicula_genero WHERE id_pelicula = ?";
+        try (PreparedStatement deleteStatement = conn.prepareStatement(deleteQuery)) {
+            deleteStatement.setInt(1, codigoPelicula);
+            deleteStatement.executeUpdate();
+        }
+    }
+
 
     // Método auxiliar para insertar los géneros asociados a una película
     private void insertarGenerosDePelicula(Connection conn, Pelicula pelicula) throws SQLException {
