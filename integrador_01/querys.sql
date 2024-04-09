@@ -41,7 +41,7 @@ VALUES ('Mad Max', 'https://www.youtube.com/watch?v=2OEGx_yIS6M', 'https://asset
 
 SELECT * FROM peliculas;
 
-INSERT INTO generos (genero)
+INSERT INTO generos (nombre)
 VALUES 
 	('Acción'),
 	('Aventura'),
@@ -61,82 +61,82 @@ INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'Mad Max' AND genero IN ('Acción', 'Aventura');
+WHERE titulo = 'Mad Max' AND nombre IN ('Acción', 'Aventura');
 
 -- Ted
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'Ted' AND genero IN ('Comedia');
+WHERE titulo = 'Ted' AND nombre IN ('Comedia');
 
 -- The Shawshank Redemption
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'The Shawshank Redemption' AND genero IN ('Drama');
+WHERE titulo = 'The Shawshank Redemption' AND nombre IN ('Drama');
 
 -- The Godfather
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'The Godfather' AND genero IN ('Drama', 'Crimen');
+WHERE titulo = 'The Godfather' AND nombre IN ('Drama', 'Crimen');
 
 -- The Dark Knight
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'The Dark Knight' AND genero IN ('Acción', 'Crimen', 'Drama');
+WHERE titulo = 'The Dark Knight' AND nombre IN ('Acción', 'Crimen', 'Drama');
 
 -- Schindler's List
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'Schindler\'s List' AND genero IN ('Biografía', 'Drama', 'Historia');
+WHERE titulo = 'Schindler\'s List' AND nombre IN ('Biografía', 'Drama', 'Historia');
 
 -- The Lord of the Rings: The Return of the King
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'The Lord of the Rings: The Return of the King' AND genero IN ('Aventura', 'Drama', 'Fantasía');
+WHERE titulo = 'The Lord of the Rings: The Return of the King' AND nombre IN ('Aventura', 'Drama', 'Fantasía');
 
 -- Pulp Fiction
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'Pulp Fiction' AND genero IN ('Crimen', 'Drama');
+WHERE titulo = 'Pulp Fiction' AND nombre IN ('Crimen', 'Drama');
 
 -- Forrest Gump
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'Forrest Gump' AND genero IN ('Drama', 'Romance');
+WHERE titulo = 'Forrest Gump' AND nombre IN ('Drama', 'Romance');
 
 -- Fight Club
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'Fight Club' AND genero IN ('Drama');
+WHERE titulo = 'Fight Club' AND nombre IN ('Drama');
 
 -- Inception
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'Inception' AND genero IN ('Acción', 'Aventura', 'Ciencia ficción');
+WHERE titulo = 'Inception' AND nombre IN ('Acción', 'Aventura', 'Ciencia ficción');
 
 -- The Matrix
 INSERT INTO pelicula_genero (id_pelicula, id_genero)
 SELECT codigo, id
 FROM peliculas
 CROSS JOIN generos
-WHERE titulo = 'The Matrix' AND genero IN ('Acción', 'Ciencia ficción');
+WHERE titulo = 'The Matrix' AND nombre IN ('Acción', 'Ciencia ficción');
 
